@@ -10,4 +10,8 @@ public class CounsellorPortalAppApplication {
         SpringApplication.run(CounsellorPortalAppApplication.class, args);
     }
 
+    public void sayHello(){
+        System.out.println("Hello World");
+    }
+
 }
