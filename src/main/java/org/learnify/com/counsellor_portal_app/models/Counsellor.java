@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 public class Counsellor extends BaseClass {
     private String name;
+    private String address;
     private String phoneNumber;
     private String email;
     private String pwd;
