@@ -10,6 +10,7 @@ import lombok.Setter;
 public class Counsellor extends BaseClass {
     private String name;
     private String address;
+    private String postalCode;
     private String phoneNumber;
     private String email;
     private String pwd;
