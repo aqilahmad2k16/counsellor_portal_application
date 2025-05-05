@@ -6,8 +6,8 @@ import org.learnify.com.counsellor_portal_app.models.EnquiryStatus;
 
 @Data
 public class EnquiryDto {
-    private String enquiryId;
-    private String enquiryName;
+    private String id;
+    private String name;
     private String classMode;
     private String enquiryStatus;
     private String courseName;

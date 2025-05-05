@@ -1,0 +1,18 @@
+## Design controller:
+    ## CounsellorController
+        # endpoint => "/counsellors/v1/api"
+            #RequestHandling Methods:
+                1. PostMapping: "/counsellor" [counsellerRegister]
+
+
+
+    ## EnquiryController
+         # endpoint => "/enquiries/v1/api"
+            # RequestHandling Methods:      ResponseType
+                1. PostMapping: "/enquiry" [ReponseEntity<EnquiryDto>]
+                2. DeleteMapping: "/{id}"  [message: successfully deleted]
+                3. GetMapping: "/{id}"      [ResponseEntity<EnquiryDto>]
+                4. GetMapping: "/filter-enquiry" [ResponseEntity<FilterDto>]
+                5. GetMapping: "/"          [ResponseEntity<List<EnquiryDto>>]
+                5. PutMapping: "/"          [message: record is update successfully]
+

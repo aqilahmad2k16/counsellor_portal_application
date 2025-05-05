@@ -5,6 +5,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
+import org.learnify.com.counsellor_portal_app.dtos.requestDtos.EnquiryDto;
 
 @Entity
 @Setter
@@ -20,4 +21,11 @@ public class Enquiry extends BaseClass {
     @ManyToOne
     @JoinColumn(name = "counsellor_id")
     private Counsellor counsellor;
+
+    public static <T> Enquiry from(EnquiryDto enquiryDto, T counsellor) {
+        Enquiry enquiry = new Enquiry();
+        enquiry.setName(enquiryDto.getName());
+        enquiry.setPhNo(enquiryDto.getPhNo());
+//        enquiry.setCounsellor();
+    }
 }
