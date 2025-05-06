@@ -1,5 +1,6 @@
 package org.learnify.com.counsellor_portal_app.controllers;
 
+import jakarta.validation.Valid;
 import org.learnify.com.counsellor_portal_app.dtos.requestDtos.EnquiryDto;
 import org.learnify.com.counsellor_portal_app.services.EnquiryService;
 import org.slf4j.Logger;
@@ -19,14 +20,14 @@ public class EnquiryController {
     Logger logger = LoggerFactory.getLogger(EnquiryController.class);
 
     @PostMapping("/enquiry/{counsellorId}")
-    public ResponseEntity<?> upsertEnquiry(@RequestBody EnquiryDto enquiryDto, @PathVariable Long counsellorId) {
+    public ResponseEntity<?> upsertEnquiry(@Valid @RequestBody EnquiryDto enquiryDto, @PathVariable Long counsellorId) {
         logger.info("adding enquiry: " + enquiryDto.toString() + "by counsellorId: " + counsellorId);
         boolean isEquirySaved = enquiryService.upsertEnquiry(enquiryDto, counsellorId);
         if(isEquirySaved) {
             logger.info("Enquiry successfully uploaded: " + enquiryDto.toString() + "by counsellorId: " + counsellorId);
             return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
         }
-
+        logger.info("Enquiry is not uploaded: " + enquiryDto.toString());
         return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
     }
 }
