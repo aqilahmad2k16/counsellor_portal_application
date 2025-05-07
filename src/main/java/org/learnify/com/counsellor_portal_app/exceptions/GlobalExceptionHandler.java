@@ -19,4 +19,6 @@ public class GlobalExceptionHandler {
         exceptionDto.setDetails(request.getDescription(false));
         return new ResponseEntity<ExceptionDto>(exceptionDto, HttpStatus.NOT_FOUND);
     }
+
+    
 }

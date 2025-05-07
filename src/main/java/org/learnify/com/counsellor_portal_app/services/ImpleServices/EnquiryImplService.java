@@ -70,7 +70,14 @@ public class EnquiryImplService implements EnquiryService {
 
     @Override
     public EnquiryDto getEnquiry(Long enquiryId) {
-        return null;
+        logger.info("EnquiryImplService getEnquiry: started");
+        Enquiry enquiry = enquiryRepository.findById(enquiryId).orElse(null);
+        if(enquiry == null) {
+            logger.error("EnquiryImplService getEnquiry: enquiry not found");
+            throw new NullPointerException("Enquiry with this Id " + enquiryId + " not found");
+        }
+        logger.info("EnquiryImplService getEnquiry: completed");
+        return Enquiry.to(enquiry);
     }
 
     @Override
