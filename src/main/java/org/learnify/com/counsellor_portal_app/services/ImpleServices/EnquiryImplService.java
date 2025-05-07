@@ -14,9 +14,11 @@ import org.learnify.com.counsellor_portal_app.services.EnquiryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -82,7 +84,31 @@ public class EnquiryImplService implements EnquiryService {
 
     @Override
     public List<EnquiryDto> filterEnquiry(FilterDto filterDto) {
-        return List.of();
+        logger.info("EnquiryImplService filterEnquiry: started");
+
+        Specification<Enquiry> specification = Specification.where(null);
+
+        if(filterDto.getClassMode() != null) {
+            specification = specification.and(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("classMode"), filterDto.getClassMode())));
+        }
+
+        if(filterDto.getCourseName() != null) {
+            specification = specification.and(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("courseName"), filterDto.getCourseName())));
+        }
+
+        if(filterDto.getEnquiryStatus() != null) {
+            specification = specification.and(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("enquiryStatus"), filterDto.getEnquiryStatus())));
+        }
+
+        List<Enquiry> enquiries = enquiryRepository.findAll(specification);
+        if(enquiries.isEmpty()) {
+            logger.error("EnquiryImplService filterEnquiry: enquiries not found");
+            throw new NoSuchElementException("No Such Enquiries is Found");
+        }
+
+        logger.info("EnquiryImplService filterEnquiry: completed");
+        return enquiries.stream()
+                .map(Enquiry::to).toList();
     }
 
     @Override

@@ -16,3 +16,14 @@
                 5. GetMapping: "/"          [ResponseEntity<List<EnquiryDto>>]
                 5. PutMapping: "/"          [message: record is update successfully]
 
+
+    ## Filter enquiry
+        # Filter by:
+            1. classMode only
+            2. couseName only
+            3. equiryStatus only
+            4. classMode and courseName only
+            5. classMode and equiryStatus
+            6. courseName and equiryStatus
+            7. classMode and courseName and equiryStatus only
+

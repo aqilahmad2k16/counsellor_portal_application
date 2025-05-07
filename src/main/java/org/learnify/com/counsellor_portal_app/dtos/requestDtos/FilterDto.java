@@ -7,6 +7,6 @@ import org.learnify.com.counsellor_portal_app.models.EnquiryStatus;
 @Data
 public class FilterDto {
     private String classMode;
-    private String enquiryStatus;
     private String courseName;
+    private String enquiryStatus;
 }

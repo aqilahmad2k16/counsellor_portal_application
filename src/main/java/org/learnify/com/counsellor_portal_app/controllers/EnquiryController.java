@@ -2,6 +2,7 @@ package org.learnify.com.counsellor_portal_app.controllers;
 
 import jakarta.validation.Valid;
 import org.learnify.com.counsellor_portal_app.dtos.requestDtos.EnquiryDto;
+import org.learnify.com.counsellor_portal_app.dtos.requestDtos.FilterDto;
 import org.learnify.com.counsellor_portal_app.services.EnquiryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,5 +30,16 @@ public class EnquiryController {
         }
         logger.info("Enquiry is not uploaded: " + enquiryDto.toString());
         return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+    }
+
+    /*
+    * GetMapping api to get all enquiries by filtering base on the some fields:
+    * %%%%% ClassMode
+    * %%%%%%%% CourseName
+    * %%%%%%%%%%%%% EnquiryStatus
+     */
+    @GetMapping("/filter")
+    public ResponseEntity<?> filterEnquiry(@RequestBody FilterDto filterDto) {
+        return null;
     }
 }
