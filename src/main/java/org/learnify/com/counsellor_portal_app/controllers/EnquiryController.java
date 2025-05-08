@@ -2,6 +2,9 @@ package org.learnify.com.counsellor_portal_app.controllers;
 
 import jakarta.validation.Valid;
 import org.learnify.com.counsellor_portal_app.dtos.requestDtos.EnquiryDto;
+import org.learnify.com.counsellor_portal_app.dtos.responseDtos.DashboardDto;
+import org.learnify.com.counsellor_portal_app.exceptions.CounsellorNotFoundException;
+import org.learnify.com.counsellor_portal_app.exceptions.DashboardNotFoundException;
 import org.learnify.com.counsellor_portal_app.services.EnquiryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,5 +32,21 @@ public class EnquiryController {
         }
         logger.info("Enquiry is not uploaded: " + enquiryDto.toString());
         return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+    }
+
+    /*
+    * %%%%%% This api gives the dashboard of a counsellor who is login
+     */
+    @GetMapping("/counsellor-dashboard")
+    public ResponseEntity<DashboardDto> getCounsellorDashboard(@RequestParam Long counsellorId) throws DashboardNotFoundException {
+        logger.info("Request received for the counsellor dashboard with ID: {}",  counsellorId);
+        DashboardDto dashboardDto = enquiryService.getDashboard(counsellorId);
+        if(dashboardDto == null) {
+            logger.warn("Dashboard not found for counsellor ID: {}", counsellorId);
+            throw new DashboardNotFoundException("Dashboard not found for the Id: " + counsellorId);
+        }
+
+        logger.info("Returning dashboard for the counsellor ID: {}",  counsellorId);
+        return ResponseEntity.ok(dashboardDto);
     }
 }

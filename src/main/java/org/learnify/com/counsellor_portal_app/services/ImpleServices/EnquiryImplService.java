@@ -87,6 +87,11 @@ public class EnquiryImplService implements EnquiryService {
 
     @Override
     public DashboardDto getDashboard(Long counsellorId) {
-        return null;
+        logger.info("EnquiryImplService getDashboard: started");
+        List<Enquiry> enquiryList = enquiryRepository.findAllByCounsellorId(counsellorId);
+        logger.info("Found {} enquiries for counsellorId: {}", enquiryList.size(), counsellorId);
+        DashboardDto dashboardDto = Counsellor.getDashboard(enquiryList);
+        logger.info("EnquiryImplService getDashboard: completed");
+        return dashboardDto;
     }
 }
