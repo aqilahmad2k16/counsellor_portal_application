@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.NoSuchElementException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -18,6 +20,25 @@ public class GlobalExceptionHandler {
         exceptionDto.setHttpStatusCode(HttpStatus.valueOf(404));
         exceptionDto.setDetails(request.getDescription(false));
         return new ResponseEntity<ExceptionDto>(exceptionDto, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DashboardNotFoundException.class)
+    public ResponseEntity<ExceptionDto> dashboardNotFoundException(DashboardNotFoundException ex, WebRequest request) {
+        return getExceptionDtoResponseEntity(request, ex.getMessage(), ex);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<ExceptionDto> elementNotFoundException(NoSuchElementException ex, WebRequest request) {
+        return getExceptionDtoResponseEntity(request, ex.getMessage(), ex);
+    }
+
+    private ResponseEntity<ExceptionDto> getExceptionDtoResponseEntity(WebRequest request, String message, RuntimeException ex) {
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage(message);
+        exceptionDto.setHttpStatus(HttpStatus.NOT_FOUND);
+        exceptionDto.setHttpStatusCode(HttpStatus.valueOf(404));
+        exceptionDto.setDetails(request.getDescription(false));
+        return new ResponseEntity<>(exceptionDto, HttpStatus.NOT_FOUND);
     }
 
 
