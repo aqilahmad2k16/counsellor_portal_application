@@ -20,5 +20,15 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<ExceptionDto>(exceptionDto, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(DashboardNotFoundException.class)
+    public ResponseEntity<ExceptionDto> dashboardNotFoundException(DashboardNotFoundException ex, WebRequest request) {
+        ExceptionDto exceptionDto = new ExceptionDto();
+        exceptionDto.setMessage(ex.getMessage());
+        exceptionDto.setHttpStatus(HttpStatus.NOT_FOUND);
+        exceptionDto.setHttpStatusCode(HttpStatus.valueOf(404));
+        exceptionDto.setDetails(request.getDescription(false));
+        return  new ResponseEntity<>(exceptionDto, HttpStatus.NOT_FOUND);
+    }
+
     
 }
