@@ -12,6 +12,6 @@ public interface EnquiryService {
     public boolean upsertEnquiry(EnquiryDto enquiryDto, Long counsellorId);
     public List<EnquiryDto> getAllEnquiry(Long counsellorId) throws CounsellorNotFoundException;
     public EnquiryDto getEnquiry(Long enquiryId);
-    public List<EnquiryDto> filterEnquiry(FilterDto filterDto);
+    public List<EnquiryDto> filterEnquiry(FilterDto filterDto, Long counsellorId);
     public DashboardDto getDashboard(Long counsellorId);
 }
