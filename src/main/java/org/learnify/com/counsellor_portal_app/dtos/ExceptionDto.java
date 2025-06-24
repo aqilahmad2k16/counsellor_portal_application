@@ -1,4 +1,4 @@
-package org.learnify.com.counsellor_portal_app.dtos.responseDtos;
+package org.learnify.com.counsellor_portal_app.dtos;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package org.learnify.com.counsellor_portal_app.exceptions;
 
-import org.learnify.com.counsellor_portal_app.dtos.responseDtos.ExceptionDto;
+import org.learnify.com.counsellor_portal_app.dtos.ExceptionDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,18 +1,24 @@
 package org.learnify.com.counsellor_portal_app.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
-import org.learnify.com.counsellor_portal_app.dtos.responseDtos.DashboardDto;
+import org.learnify.com.counsellor_portal_app.dtos.DashboardDto;
 
 import java.util.List;
 
 @Entity
 @Setter
 @Getter
-public class Counsellor extends BaseClass {
+public class Counsellor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
-    private String phoneNumber;
+    private Long phoneNumber;
     private String email;
     private String pwd;
 
