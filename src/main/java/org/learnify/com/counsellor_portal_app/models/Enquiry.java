@@ -28,36 +28,36 @@ public class Enquiry {
     @JoinColumn(name = "counsellor_id")
     private Counsellor counsellor;
 
-//    public static Enquiry from(EnquiryDto enquiryDto, Counsellor counsellor) {
-//        Enquiry enquiry = new Enquiry();
-//        enquiry.setName(enquiryDto.getName());
-//        enquiry.setPhNo(enquiryDto.getPhNo());
-//        enquiry.setCourseName(enquiryDto.getCourseName());
-//        enquiry.setClassMode(ClassMode.valueOf(enquiryDto.getClassMode()));
-//        enquiry.setEquiryStatus(EnquiryStatus.valueOf(enquiryDto.getEnquiryStatus()));
-//        return enquiry;
-//    }
-//
-//    public static Enquiry fromIfNull(EnquiryDto enquiryDto, Long counsellorId) {
-//        Enquiry enquiry = new Enquiry();
-//        enquiry.setPhNo(enquiryDto.getPhNo());
-//        enquiry.setCourseName(enquiryDto.getCourseName());
-//        enquiry.setClassMode(ClassMode.valueOf(enquiryDto.getClassMode()));
-//        enquiry.setEquiryStatus(EnquiryStatus.valueOf(enquiryDto.getEnquiryStatus()));
-//        Counsellor counsellor = new Counsellor();
-//        counsellor.setId(counsellorId);
-//        enquiry.setCounsellor(counsellor);
-//        return enquiry;
-//    }
-//
-//    public static EnquiryDto to(Enquiry enquiry) {
-//        EnquiryDto enquiryDto = new EnquiryDto();
-//        enquiryDto.setPhNo(enquiry.getPhNo());
-//        enquiryDto.setCourseName(enquiry.getCourseName());
-//        enquiryDto.setClassMode(enquiry.getClassMode().toString());
-//        enquiryDto.setEnquiryStatus(enquiry.getEquiryStatus().toString());
-//        enquiryDto.setName(enquiry.getName());
-//        enquiryDto.setId(enquiry.getId().toString());
-//        return enquiryDto;
-//    }
+    public static Enquiry from(EnquiryDto enquiryDto, Counsellor counsellor) {
+        Enquiry enquiry = new Enquiry();
+        enquiry.setName(enquiryDto.getName());
+        enquiry.setPhoneNumber(enquiryDto.getPhoneNumber());
+        enquiry.setCourseName(enquiryDto.getCourseName());
+        enquiry.setClassMode(enquiryDto.getClassMode());
+        enquiry.setEquiryStatus(enquiryDto.getEnquiryStatus());
+        return enquiry;
+    }
+
+    public static Enquiry fromIfNull(EnquiryDto enquiryDto, Long counsellorId) {
+        Enquiry enquiry = new Enquiry();
+        enquiry.setPhoneNumber(enquiryDto.getPhoneNumber());
+        enquiry.setCourseName(enquiryDto.getCourseName());
+        enquiry.setClassMode(enquiryDto.getClassMode());
+        enquiry.setEquiryStatus(enquiryDto.getEnquiryStatus());
+        Counsellor counsellor = new Counsellor();
+        counsellor.setId(counsellorId);
+        enquiry.setCounsellor(counsellor);
+        return enquiry;
+    }
+
+    public static EnquiryDto to(Enquiry enquiry) {
+        EnquiryDto enquiryDto = new EnquiryDto();
+        enquiryDto.setPhoneNumber(enquiry.getPhoneNumber());
+        enquiryDto.setCourseName(enquiry.getCourseName());
+        enquiryDto.setClassMode(enquiry.getClassMode().toString());
+        enquiryDto.setEnquiryStatus(enquiry.getEquiryStatus().toString());
+        enquiryDto.setName(enquiry.getName());
+        enquiryDto.setClassMode(enquiry.getClassMode().toString());
+        return enquiryDto;
+    }
 }

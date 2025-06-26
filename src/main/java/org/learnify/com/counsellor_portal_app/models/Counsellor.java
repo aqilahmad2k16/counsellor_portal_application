@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import org.learnify.com.counsellor_portal_app.common.EnquiryStatus;
 import org.learnify.com.counsellor_portal_app.dtos.DashboardDto;
 
 import java.util.List;
@@ -22,21 +23,21 @@ public class Counsellor {
     private String email;
     private String pwd;
 
-//    public static DashboardDto getDashboard(List<Enquiry> enquiryList) {
-//        DashboardDto dashboardDto = new DashboardDto();
-//        Long totalEnquiryCount = (long) enquiryList.size();
-//        Long openEnquiryCount = enquiryList.stream()
-//                .filter(enquiry -> enquiry.getEquiryStatus().equals(EnquiryStatus.OPEN))
-//                .count();
-//        Long enrolledEnquiryCount = enquiryList.stream()
-//                .filter(enquiry -> enquiry.getEquiryStatus().equals(EnquiryStatus.ENROLLED))
-//                .count();
-//        Long lostEnquiryCount = totalEnquiryCount - openEnquiryCount - enrolledEnquiryCount;
-//
-//        dashboardDto.setTotalEnquiries(totalEnquiryCount);
-//        dashboardDto.setOpenEnquiries(openEnquiryCount);
-//        dashboardDto.setEnrolledEnquiries(enrolledEnquiryCount);
-//        dashboardDto.setLostEnquiries(lostEnquiryCount);
-//        return dashboardDto;
-//    }
+    public static DashboardDto getDashboard(List<Enquiry> enquiryList) {
+        DashboardDto dashboardDto = new DashboardDto();
+        Integer totalEnquiryCount = enquiryList.size();
+        Integer openEnquiryCount = (int) enquiryList.stream()
+                .filter(enquiry -> enquiry.getEquiryStatus().equals(EnquiryStatus.OPEN))
+                .count();
+        Integer enrolledEnquiryCount = (int) enquiryList.stream()
+                .filter(enquiry -> enquiry.getEquiryStatus().equals(EnquiryStatus.ENROLLED))
+                .count();
+        Integer lostEnquiryCount = totalEnquiryCount - openEnquiryCount - enrolledEnquiryCount;
+
+        dashboardDto.setTotalEnquiries(totalEnquiryCount);
+        dashboardDto.setOpenEnquiries(openEnquiryCount);
+        dashboardDto.setEnrolledEnquiries(enrolledEnquiryCount);
+        dashboardDto.setLostEnquiries(lostEnquiryCount);
+        return dashboardDto;
+    }
 }
