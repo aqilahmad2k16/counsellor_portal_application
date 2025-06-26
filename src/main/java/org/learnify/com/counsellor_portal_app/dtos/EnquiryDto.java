@@ -9,5 +9,5 @@ public class EnquiryDto {
     private String classMode;
     private String enquiryStatus;
     private String courseName;
-    private Long phNo;
+    private Long phoneNumber;
 }
